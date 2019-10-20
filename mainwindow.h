@@ -7,6 +7,7 @@
 #include <QTcpSocket>
 #include <QKeyEvent>
 #include <QByteArray>
+#include <QMessageBox>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -42,7 +43,7 @@ public:
         int smNum;
         int smSpeed;
         int smAcceleration;
-        int smDistance;
+        char smDistance;
     };
 
     struct Goto {
@@ -50,11 +51,11 @@ public:
         int smNum;
         int smSpeed;
         int smAcceleration;
-        int smPosition;
+        char smPosition;
     };
 
     struct Led {
-        int command = 6;
+        int command = 256;
         int ledAction;
     };
 
