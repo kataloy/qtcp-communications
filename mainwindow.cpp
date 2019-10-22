@@ -53,7 +53,7 @@ void MainWindow::on_btn_start_clicked()
 
     if (start.smDir != 0 && start.smDir != 1) {
         QMessageBox::warning(this,"Warning", "Ошибка. Неправильные параметры.");
-    }
+    } else {
 
     arrayStart.resize(20);
     arrayStart.insert(0, reinterpret_cast<char*> (&start), sizeof(start));
@@ -61,6 +61,7 @@ void MainWindow::on_btn_start_clicked()
     tcpsocket->write(arrayStart.data(), 20);
 
     arrayStart.clear();
+    }
 }
 
 void MainWindow::on_btn_stop_clicked()
@@ -72,7 +73,7 @@ void MainWindow::on_btn_stop_clicked()
 
     if (stop.smStopMode != 0 && stop.smStopMode != 1) {
         QMessageBox::warning(this,"Warning", "Ошибка. Неправильные параметры.");
-    }
+    } else {
 
     arrayStop.resize(20);
     arrayStop.insert(0, reinterpret_cast<char*> (&stop), sizeof(stop));
@@ -80,6 +81,7 @@ void MainWindow::on_btn_stop_clicked()
     tcpsocket->write(arrayStop.data(), 20);
 
     arrayStop.clear();
+    }
 }
 
 void MainWindow::on_btn_move_clicked()
@@ -94,7 +96,7 @@ void MainWindow::on_btn_move_clicked()
 
     if (move.smNum != 0 && move.smNum != 1 && move.smNum != 2 && move.smNum != 3) {
         QMessageBox::warning(this,"Warning", "Ошибка. Неправильные параметры.");
-    }
+    } else {
 
     arrayMove.resize(20);
     arrayMove.insert(0, reinterpret_cast<char*> (&move), sizeof(move));
@@ -102,6 +104,7 @@ void MainWindow::on_btn_move_clicked()
     tcpsocket->write(arrayMove.data(), 20);
 
     arrayMove.clear();
+    }
 }
 
 void MainWindow::on_btn_goto_clicked()
@@ -116,7 +119,7 @@ void MainWindow::on_btn_goto_clicked()
 
     if (go.smNum != 0 && go.smNum != 1 && go.smNum != 2 && go.smNum != 3) {
         QMessageBox::warning(this,"Warning", "Ошибка. Неправильные параметры.");
-    }
+    } else {
 
     arrayGo.resize(20);
     arrayGo.insert(0, reinterpret_cast<char*> (&go), sizeof(go));
@@ -124,6 +127,7 @@ void MainWindow::on_btn_goto_clicked()
     tcpsocket->write(arrayGo.data(), 20);
 
     arrayGo.clear();
+    }
 }
 
 void MainWindow::on_btn_led_clicked()
@@ -135,14 +139,16 @@ void MainWindow::on_btn_led_clicked()
 
     if (led.ledAction != 1 && led.ledAction != 2 && led.ledAction != 3) {
         QMessageBox::warning(this,"Warning", "Ошибка. Неправильные параметры.");
+    } else {
+
+        arrayLed.resize(20);
+        arrayLed.insert(0, reinterpret_cast<char*> (&led), sizeof(led));
+
+        tcpsocket->write(arrayLed.data(), 20);
+
+        arrayLed.clear();
+
     }
-
-    arrayLed.resize(20);
-    arrayLed.insert(0, reinterpret_cast<char*> (&led), sizeof(led));
-
-    tcpsocket->write(arrayLed.data(), 20);
-
-    arrayLed.clear();
 }
 
 void MainWindow::on_btn_connect_clicked()
